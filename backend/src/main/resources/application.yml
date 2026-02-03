@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:h2:mem:banksmart;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+jwt:
+  secret: ${JWT_SECRET:banksmart-dev-secret-change-in-production}
+  expirationMinutes: ${JWT_EXPIRATION_MINUTES:240}
