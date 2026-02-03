@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OrderColumn;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,12 @@ public class Module {
   private List<String> commonMistakes = new ArrayList<>();
 
   @ElementCollection(fetch = FetchType.EAGER)
+  @OrderColumn
   private List<String> formHighlights = new ArrayList<>();
+
+  @ElementCollection(fetch = FetchType.EAGER)
+  @OrderColumn
+  private List<FormField> formFields = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -93,5 +99,13 @@ public class Module {
 
   public void setFormHighlights(List<String> formHighlights) {
     this.formHighlights = formHighlights;
+  }
+
+  public List<FormField> getFormFields() {
+    return formFields;
+  }
+
+  public void setFormFields(List<FormField> formFields) {
+    this.formFields = formFields;
   }
 }

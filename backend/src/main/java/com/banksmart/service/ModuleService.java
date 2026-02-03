@@ -1,5 +1,6 @@
 package com.banksmart.service;
 
+import com.banksmart.dto.FormFieldResponse;
 import com.banksmart.dto.ModuleResponse;
 import com.banksmart.model.Module;
 import com.banksmart.repository.ModuleRepository;
@@ -33,6 +34,9 @@ public class ModuleService {
         module.getRequiredDocuments(),
         module.getProcessSteps(),
         module.getCommonMistakes(),
-        module.getFormHighlights());
+        module.getFormHighlights(),
+        module.getFormFields().stream()
+            .map(field -> new FormFieldResponse(field.getLabel(), field.getGuidance(), field.getCaution()))
+            .toList());
   }
 }

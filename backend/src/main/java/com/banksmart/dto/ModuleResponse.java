@@ -11,10 +11,11 @@ public class ModuleResponse {
   private List<String> processSteps;
   private List<String> commonMistakes;
   private List<String> formHighlights;
+  private List<FormFieldResponse> formFields;
 
   public ModuleResponse(Long id, String slug, String title, String purpose,
       List<String> requiredDocuments, List<String> processSteps,
-      List<String> commonMistakes, List<String> formHighlights) {
+      List<String> commonMistakes, List<String> formHighlights, List<FormFieldResponse> formFields) {
     this.id = id;
     this.slug = slug;
     this.title = title;
@@ -23,6 +24,7 @@ public class ModuleResponse {
     this.processSteps = processSteps;
     this.commonMistakes = commonMistakes;
     this.formHighlights = formHighlights;
+    this.formFields = formFields;
   }
 
   public Long getId() {
@@ -55,5 +57,9 @@ public class ModuleResponse {
 
   public List<String> getFormHighlights() {
     return formHighlights;
+  }
+
+  public List<FormFieldResponse> getFormFields() {
+    return formFields;
   }
 }

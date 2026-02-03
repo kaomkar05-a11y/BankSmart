@@ -1,5 +1,6 @@
 package com.banksmart.config;
 
+import com.banksmart.model.FormField;
 import com.banksmart.model.Module;
 import com.banksmart.repository.ModuleRepository;
 import java.util.List;
@@ -62,6 +63,13 @@ public class DataInitializer implements CommandLineRunner {
         "Occupation: Select one category and write employer/college name clearly.",
         "Specimen Signature: Sign inside the box only; avoid touching borders."
     ));
+    module.setFormFields(List.of(
+        new FormField("Account Type", "Tick Savings/Student based on eligibility; ask for zero-balance option if eligible.", "Do not tick multiple account types."),
+        new FormField("Applicant Name", "Match Aadhaar/PAN spelling exactly; include middle name.", "Avoid initials if your IDs show full name."),
+        new FormField("Address & PIN", "Write house number, street, city, and PIN code in full.", "Leaving PIN blank delays KYC verification."),
+        new FormField("Nominee Details", "Provide full legal name and relationship with date of birth.", "Skipping nominee forces extra declarations later."),
+        new FormField("Specimen Signature", "Sign within the box using the same style as PAN signature.", "Do not overwrite or touch borders.")
+    ));
     return module;
   }
 
@@ -86,7 +94,7 @@ public class DataInitializer implements CommandLineRunner {
         "Keep the stamped slip as proof for future reference."
     ));
     module.setCommonMistakes(List.of(
-        "Writing the amount in words incorrectly (e.g., missing " + "Only").
+        "Writing the amount in words incorrectly (e.g., missing 'Only').",
         "Leaving the account number blank or incorrect.",
         "Not counting cash before leaving the counter.",
         "Using old or torn deposit slips that are not accepted by the cashier."
@@ -97,6 +105,13 @@ public class DataInitializer implements CommandLineRunner {
         "Denomination Table: Fill exact count of notes for deposits; totals must match.",
         "Signature: Must match the bank's signature record.",
         "Date: Use DD/MM/YYYY format as per the slip."
+    ));
+    module.setFormFields(List.of(
+        new FormField("Account Number", "Copy from passbook or SMS exactly; use one box per digit.", "Incorrect account number causes rejection."),
+        new FormField("Amount in Figures", "Write the exact amount in numbers with commas.", "Avoid overwriting or unclear digits."),
+        new FormField("Amount in Words", "Write in rupees and end with 'Only'.", "Missing 'Only' can lead to manual correction."),
+        new FormField("Denomination Breakdown", "List note counts for each denomination on deposit slips.", "Total must match the amount written above."),
+        new FormField("Signature", "Sign as per bank records.", "Signature mismatch pauses the transaction.")
     ));
     return module;
   }
@@ -128,6 +143,12 @@ public class DataInitializer implements CommandLineRunner {
         "Passbook Replacement Form: Mention the old passbook number if visible.",
         "Reason for Replacement: Write 'damaged' or 'lost' clearly and sign.",
         "Contact Number: Provide a reachable mobile number for SMS updates."
+    ));
+    module.setFormFields(List.of(
+        new FormField("Account Number", "Write the savings account number as per passbook.", "Do not use ATM card number."),
+        new FormField("Reason for Request", "State 'printing not clear', 'damaged', or 'lost'.", "Avoid vague reasons like 'needed'."),
+        new FormField("Registered Mobile", "Enter the mobile number linked to the account.", "Incorrect number delays SMS confirmations."),
+        new FormField("Signature", "Sign within the provided box.", "Signature mismatch requires branch verification.")
     ));
     return module;
   }
@@ -164,6 +185,13 @@ public class DataInitializer implements CommandLineRunner {
         "References: Provide two references who can be contacted and know you personally.",
         "Declaration: Read before signing; it confirms accuracy of all details."
     ));
+    module.setFormFields(List.of(
+        new FormField("Loan Type", "Select home, education, personal, or vehicle based on need.", "Multiple selections delay processing."),
+        new FormField("Requested Amount", "Enter amount that matches income and EMI capacity.", "Inflated amount increases rejection risk."),
+        new FormField("Monthly Income", "Use net salary or average business income.", "Do not exclude existing EMIs."),
+        new FormField("Existing Loans", "List all ongoing EMIs with lender names.", "Hiding liabilities affects credit checks."),
+        new FormField("References", "Provide two reachable references with address and phone.", "Avoid same surname without explanation.")
+    ));
     return module;
   }
 
@@ -196,6 +224,13 @@ public class DataInitializer implements CommandLineRunner {
         "Cheque Requisition: Mention account number and leaf count requested.",
         "Cheque Layout: Date on top right, payee name on " + "Pay" + " line, amount in words across the center.",
         "Signature Panel: Sign exactly as per bank records, no overwriting."
+    ));
+    module.setFormFields(List.of(
+        new FormField("ATM Card Request", "Tick if you want debit card and SMS alerts enabled.", "Do not share PIN or request form with others."),
+        new FormField("Mobile Number", "Use the number linked to the account for OTP.", "Unregistered numbers cause OTP failures."),
+        new FormField("Cheque Book Leaves", "Select 25 or 50 leaves based on usage.", "Requesting too many leaves may need approval."),
+        new FormField("Payee Name", "Write full beneficiary name in capital letters.", "Avoid leaving the payee line blank."),
+        new FormField("Cheque Date", "Write DD/MM/YYYY within validity.", "Post-dated cheques beyond 3 months can bounce.")
     ));
     return module;
   }

@@ -101,7 +101,20 @@ const ModuleDetail = () => {
             ]}
           />
           <div className="detail-section rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-navy-900">Form Preview Highlights</h3>
+            <h3 className="text-lg font-semibold text-navy-900">Sample Form Preview</h3>
+            <div className="mt-3 space-y-3 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4">
+              <p className="text-xs font-semibold uppercase text-slate-500">Key fields to fill</p>
+              <div className="space-y-3">
+                {module.formFields?.map((field) => (
+                  <div key={field.label} className="rounded-lg border border-slate-200 bg-white p-3 text-sm">
+                    <p className="font-semibold text-navy-900">{field.label}</p>
+                    <p className="mt-1 text-slate-600">{field.guidance}</p>
+                    <p className="mt-2 text-xs text-rose-700">Avoid: {field.caution}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <h4 className="mt-5 text-sm font-semibold text-navy-900">Form Preview Highlights</h4>
             <div className="mt-3 space-y-3">
               {module.formHighlights.map((highlight) => (
                 <div key={highlight} className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
